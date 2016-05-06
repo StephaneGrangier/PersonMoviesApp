@@ -29,11 +29,9 @@
             <from-outcome>Success</from-outcome>
             <to-view-id>/detailsPerson.xhtml</to-view-id>
         </navigation-case>
-        
     </navigation-rule>
     
-    
-    
+   
     <navigation-rule>
         <from-view-id>/createPerson.xhtml</from-view-id>
         <navigation-case>
@@ -43,5 +41,13 @@
         </navigation-case>
     </navigation-rule>
     
+    
+    <navigation-rule>
+        <from-view-id>/detailsPerson.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>accueil</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
     
 </faces-config>

@@ -5,6 +5,7 @@
  */
 package ch.hearc.ig.odi.personmoviesapp.business;
 
+import ch.hearc.ig.odi.personmoviesapp.exception.DoublonException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +63,10 @@ public class Person {
         this.personAVue = PersonAVue;
     }
     
-    public void addMovie(Movie movie){
+    public void addMovie(Movie movie) throws DoublonException{
+        if (personAVue.contains(movie)){
+           throw new DoublonException("Error, this movie is already in this list.");
+        }
         this.personAVue.add(movie);
         
     }

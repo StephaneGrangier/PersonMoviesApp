@@ -1,12 +1,69 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+      
     </h:head>
     <h:body>
-        Hello from Facelets
+
+        
+        <ui:composition template="/layout.xhtml">
+         
+            <ui:define name="header">
+                <h1>
+                    <h:outputText value="#{msg['accueil.title']}" />
+                </h1>
+            </ui:define>
+   
+            <ui:define name="content">
+                <h1>
+                    <h:outputText value="#{msg['person.list.title']}" />
+                </h1>
+
+                <h:form id="persListForm">
+
+                    <h:dataTable id="dtPerson" var="person" value="#{listPersonBean.getPeople()}">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['person.id']}" />
+                            </f:facet>
+                            <h:outputText id="personId" value="#{person.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['person.firstName']}" />
+                            </f:facet>
+                            <h:commandLink id="cmdLnkPersonFN" value="#{person.firstName}" action="#{detailsPersonBean.recupPerson(person)}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['person.lastName']}" />
+                            </f:facet>
+                            <h:commandLink id="cmdLnkpersonLN" value="#{person.lastName}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['person.nbrMovies']}" />
+                            </f:facet>
+                            <h:outputText id="personNbrMovies" value="#{person.nbrMovies()}"/>
+                        </h:column>
+                    </h:dataTable>
+
+                    <br/>
+                    <h:commandButton id="cmdBtnAddPerson" value="#{msg['button.label.addPerson']}" action="createPerson"/>
+                </h:form>
+            </ui:define>
+            <ui:define name="footer">
+                <p>footer</p>
+            </ui:define>
+
+        </ui:composition> 
+
+
     </h:body>
 </html>
 

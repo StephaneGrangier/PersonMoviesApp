@@ -19,44 +19,45 @@ import javax.inject.Inject;
  *
  * @author floriane.sapin
  */
-@Named(value = "detailsPersonBean")
+@Named(value = "detailsMovieBean")
 @RequestScoped
-public class DetailsPersonBean {
+public class DetailsMovieBean {
     
     @Inject Services services;
-    private Person person;
+    private Movie movie;
 
     /**
-     * Creates a new instance of DetailsPersonBean
+     * Creates a new instance of DetailsMovieBean
      */
-    public DetailsPersonBean() {
+    public DetailsMovieBean() {
     }
 
-
-    public Person getPerson() {
-        return person;
+    public Movie getMovie() {
+        return movie;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
     
-    public String recupPerson(Person person){
-        if (person == null){
+    public String recupMovie(Movie movie){
+        if (movie == null){
             return "fail";
-        } else {
-            this.person = person;
+        } else{
+            this.movie = movie;
             return "Success";
         }
     }
     
-    /**
-     * Permet d'afficher les films vu par la personne récupérer dans le bean
+        /**
+     * Permet d'afficher les personne qui ont vu le film récupérer dans le bean
+     * @return une liste de personne
+     * 
      */
-    public List<Movie> getMovies (){
-        List<Movie> movies = new ArrayList<Movie>();
-        movies = person.getPersonAVue();
-        return movies;
+    public List<Person> getPersons(){
+        List<Person> persons = new ArrayList<Person>();
+        persons = movie.getFilmVuPar();
+        return persons;
     }
     
 }

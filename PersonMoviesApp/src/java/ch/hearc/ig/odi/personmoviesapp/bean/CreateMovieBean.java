@@ -17,28 +17,20 @@ import javax.inject.Inject;
  *
  * @author floriane.sapin
  */
-@Named(value = "createPersonBean")
+@Named(value = "createMovieBean")
 @RequestScoped
-public class CreatePersonBean {
+public class CreateMovieBean{
+    
     
     @Inject Services services;
-    
-   private Long id;
-   private String firstName;
-   private String lastName;
+    private Long id;
+    private String name;
+    private String producer;
 
     /**
-     * Creates a new instance of CreatePersonBean
+     * Creates a new instance of CreateMovieBean
      */
-    public CreatePersonBean() {
-    }
-
-    public Services getServices() {
-        return services;
-    }
-
-    public void setServices(Services services) {
-        this.services = services;
+    public CreateMovieBean() {
     }
 
     public Long getId() {
@@ -49,27 +41,27 @@ public class CreatePersonBean {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getProducer() {
+        return producer;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setProducer(String producer) {
+        this.producer = producer;
     }
-    
-    
-    
-    public String savePerson(){
+
+ 
+
+        public String saveMovie(){
        String result;
-       services.addPeople(id, firstName, lastName);
+       services.addMovie(id, name, producer);
        result = "Success";
        return result;
     }

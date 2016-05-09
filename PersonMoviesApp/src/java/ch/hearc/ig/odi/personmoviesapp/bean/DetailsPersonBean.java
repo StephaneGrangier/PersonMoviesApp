@@ -8,11 +8,13 @@ package ch.hearc.ig.odi.personmoviesapp.bean;
 import ch.hearc.ig.odi.personmoviesapp.business.Movie;
 import ch.hearc.ig.odi.personmoviesapp.business.Person;
 import ch.hearc.ig.odi.personmoviesapp.service.Services;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 /**
@@ -21,6 +23,7 @@ import javax.inject.Inject;
  */
 @Named(value = "detailsPersonBean")
 @RequestScoped
+
 public class DetailsPersonBean {
     
     @Inject Services services;
@@ -54,9 +57,9 @@ public class DetailsPersonBean {
      * Permet d'afficher les films vu par la personne récupérer dans le bean
      */
     public List<Movie> getMovies (){
-        List<Movie> movies = new ArrayList<Movie>();
-        movies = person.getPersonAVue();
-        return movies;
+        //List<Movie> movies = new ArrayList<Movie>();
+        return person.getPersonAVue();
+
     }
     
 }

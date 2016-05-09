@@ -7,10 +7,12 @@ package ch.hearc.ig.odi.personmoviesapp.bean;
 
 import ch.hearc.ig.odi.personmoviesapp.business.Person;
 import ch.hearc.ig.odi.personmoviesapp.service.Services;
+import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 /**

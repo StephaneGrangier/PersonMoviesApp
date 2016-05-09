@@ -48,7 +48,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{msg['movie.name']}" />
                             </f:facet>
-                            <h:commandLink id="cmdLnkMovieName" value="#{movie.name}" />
+                            <h:commandLink id="cmdLnkMovieName" value="#{movie.name}" action="#{detailsMovieBean.recupMovie(movie)}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">

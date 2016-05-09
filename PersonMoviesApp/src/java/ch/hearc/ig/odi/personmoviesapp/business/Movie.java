@@ -5,6 +5,7 @@
  */
 package ch.hearc.ig.odi.personmoviesapp.business;
 
+import ch.hearc.ig.odi.personmoviesapp.exception.DoublonException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,22 +14,22 @@ import java.util.List;
  * @author floriane.sapin
  */
 public class Movie {
-    
+
     private Long id;
     private String name;
     private String producer;
     private List<Person> filmVuPar;
-    
-    public Movie(){
-        
+
+    public Movie() {
+
     }
-    
-    public Movie(Long id, String name, String producer){
+
+    public Movie(Long id, String name, String producer) {
         filmVuPar = new ArrayList<Person>();
         this.id = id;
         this.name = name;
         this.producer = producer;
-       
+
     }
 
     public Long getId() {
@@ -63,7 +64,16 @@ public class Movie {
         this.filmVuPar = filmVuPar;
     }
 
+    public Integer filmVuParNbrPerson() {
+        return this.filmVuPar.size();
+    }
 
-    
-    
+    public void addPerson(Person person) throws DoublonException {
+        if (filmVuPar.contains(person)) {
+            throw new DoublonException("Error, this movie is already in this list.");
+        }
+        this.filmVuPar.add(person);
+
+    }
+
 }

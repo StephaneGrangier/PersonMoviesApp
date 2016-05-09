@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <ui:composition template="/layout.xhtml">
+            <ui:define name="header">
+                <h1>
+                    <h:outputText value="#{msg['createMovie.title']}" />
+                </h1>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h2>#{msg['movie.create.form.title']}</h2>
+                    #{msg['movie.id']} : <h:inputText id="number"
+                                   title="Id"
+                                   required="true"
+                                   requiredMessage="#{msg['movie.create.error.id.required']}"
+                                   maxlength="25"
+                                   value="#{createMovieBean.id}"/>
+                    <p></p>
+                    #{msg['movie.name']} : <h:inputText id="name"
+                                   title="Name"
+                                   required="true"
+                                   requiredMessage="#{msg['movie.create.error.name.required']}"
+                                   maxlength="200" 
+                                   value="${createMovieBean.name}"/>
+                    <p></p>
+                    #{msg['movie.producer']} : <h:inputText id="producer"
+                                   title="Producer"
+                                   required="true"
+                                   requiredMessage="#{msg['movie.create.error.producer.required']}"
+                                   maxlength="70"
+                                   value="${createMovieBean.producer}"/>
+                    <p></p>
+
+                    &nbsp;
+
+                    <h:commandButton id="submit" value="#{msg['button.label.submit']}" 
+                                     action="${createMovieBean.saveMovie()}" />
+
+                </h:form>
+                <br/>
+            </ui:define>
+
+            <ui:define name="footer">
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

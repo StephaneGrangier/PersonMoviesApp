@@ -5,9 +5,10 @@
  */
 package ch.hearc.ig.odi.personmoviesapp.bean;
 
-import ch.hearc.ig.odi.personmoviesapp.business.Person;
+import ch.hearc.ig.odi.personmoviesapp.business.Movie;
 import ch.hearc.ig.odi.personmoviesapp.service.Services;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -19,21 +20,19 @@ import javax.inject.Inject;
  *
  * @author floriane.sapin
  */
-@Named(value = "listPersonBean")
+@Named(value = "listMovieBean")
 @RequestScoped
-public class ListPersonBean {
-    
-    
-    @Inject Services services;
+public class ListMovieBean {
 
-    /**
-     * Creates a new instance of ListPersonBean
-     */
-    public ListPersonBean() {
+   @Inject Services services;
+   
+    public ListMovieBean() {
     }
     
-    public List<Person> getPeople(){
-        return services.getPeopleList();
+    public List<Movie> getMovies(){
+        List<Movie> listMovies = new ArrayList<Movie>();
+        listMovies = services.getMoviesList();
+        return listMovies;
     }
     
 }

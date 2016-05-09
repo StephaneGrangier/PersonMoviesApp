@@ -56,13 +56,51 @@
                     <br/>
                     <h:commandButton id="cmdBtnAddPerson" value="#{msg['button.label.addPerson']}" action="createPerson"/>
                 </h:form>
+                
+                
+                <h1>
+                    <h:outputText value="#{msg['movies.list.title']}" />
+                </h1>
+
+                <h:form id="movieListForm">
+
+                    <h:dataTable id="dtMovies" var="movie" value="#{listMovieBean.getMovies()}">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['movie.id']}" />
+                            </f:facet>
+                            <h:outputText id="movieId" value="#{movie.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['movie.name']}" />
+                            </f:facet>
+                            <h:commandLink id="cmdLnkMovieNameFN" value="#{movie.name}" action="#{detailsMovieBean.recupMovie(movie)}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['movie.producer']}" />
+                            </f:facet>
+                            <h:commandLink id="cmdLnkmovieProducerLN" value="#{movie.producer}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['movie.nbrPersons']}" />
+                            </f:facet>
+                            <h:outputText id="movieNbrPersons" value="#{movie.filmVuParNbrPerson()}"/>
+                        </h:column>
+                    </h:dataTable>
+
+                    <br/>
+                    <h:commandButton id="cmdBtnAddMovie" value="#{msg['button.label.addMovie']}" action="createMovie"/>
+                </h:form>
             </ui:define>
             <ui:define name="footer">
                 <p>footer</p>
             </ui:define>
 
         </ui:composition> 
-
 
     </h:body>
 </html>

@@ -12,49 +12,49 @@
         <ui:composition template="/layout.xhtml">
             <ui:define name="header">
                 <h1>
-                    <h:outputText value="#{msg['detailsPerson.title']}" />
+                    <h:outputText value="#{msg['detailsMovie.title']}" />
                 </h1>
             </ui:define>
 
             <ui:define name="content">
 
                 <h2>
-                    <h:outputText value="#{msg['person.details.title']}" />
+                    <h:outputText value="#{msg['movie.details.title']}" />
                 </h2>
 
                 <h:panelGrid border="0" columns="2">
-                    <h:outputLabel value="#{msg['person.id']} : " />
-                    <h:outputText value="#{detailsPersonBean.person.id}" />
-                    <h:outputLabel value="#{msg['person.firstName']} : " />
-                    <h:outputText value="#{detailsPersonBean.person.firstName}" />
-                    <h:outputLabel value="#{msg['person.lastName']} : " />
-                    <h:outputText value="#{detailsPersonBean.person.lastName}" />
+                    <h:outputLabel value="#{msg['movie.id']} : " />
+                    <h:outputText value="#{detailsMovieBean.movie.id}" />
+                    <h:outputLabel value="#{msg['movie.name']} : " />
+                    <h:outputText value="#{detailsMovieBean.movie.name}" />
+                    <h:outputLabel value="#{msg['movie.producer']} : " />
+                    <h:outputText value="#{detailsMovieBean.movie.producer}" />
                 </h:panelGrid>
 
                 <h1>
-                    <h:outputText value="#{msg['person.listMovie.title']}" />
+                    <h:outputText value="#{msg['movie.listPerson.title']}" />
                 </h1>
 
-                <h:form id="persMovieListForm">
+                <h:form id="moviePersListForm">
 
-                    <h:dataTable id="listMovies" var="movie" value="#{detailsPersonBean.getMovies()}">
+                    <h:dataTable id="listPers" var="person" value="#{detailsMovieBean.getPersons()}">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{msg['movie.id']}" />
+                                <h:outputText value="#{msg['person.id']}" />
                             </f:facet>
-                            <h:outputText id="movieId" value="#{movie.id}"/>
+                            <h:outputText id="persId" value="#{person.id}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{msg['movie.name']}" />
+                                <h:outputText value="#{msg['person.firstName']}" />
                             </f:facet>
-                            <h:commandLink id="cmdLnkMovieName" value="#{movie.name}" action="#{detailsMovieBean.recupMovie(movie)}"/>
+                            <h:commandLink id="cmdLnkPersFirstname" value="#{person.firstName}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{msg['person.producer']}" />
+                                <h:outputText value="#{msg['person.lastName']}" />
                             </f:facet>
-                            <h:commandLink id="cmdLnkMovieProducer" value="#{movie.producer}" />
+                            <h:commandLink id="cmdLnkPerLastname" value="#{person.lastName}" />
                         </h:column>
 
                     </h:dataTable>
@@ -72,3 +72,4 @@
         </ui:composition>
     </body>
 </html>
+

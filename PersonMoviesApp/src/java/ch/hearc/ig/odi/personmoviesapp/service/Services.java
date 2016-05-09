@@ -52,11 +52,17 @@ public class Services implements Serializable{
         
         try {
             people.get(1l).addMovie(movies.get(1l));
+            movies.get(11).addPerson(people.get(11));
             people.get(1l).addMovie(movies.get(3l));
+            movies.get(31).addPerson(people.get(11));
             people.get(1l).addMovie(movies.get(5l));
+            movies.get(51).addPerson(people.get(11));
             people.get(1l).addMovie(movies.get(6l));
+            movies.get(61).addPerson(people.get(11));
             people.get(2l).addMovie(movies.get(7l));
+            movies.get(71).addPerson(people.get(21));
             people.get(2l).addMovie(movies.get(8l));
+            movies.get(81).addPerson(people.get(21));
             people.get(2l).addMovie(movies.get(9l));
             people.get(3l).addMovie(movies.get(2l));
             people.get(3l).addMovie(movies.get(4l));

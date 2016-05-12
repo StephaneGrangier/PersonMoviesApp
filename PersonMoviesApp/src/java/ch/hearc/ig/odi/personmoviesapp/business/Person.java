@@ -68,6 +68,7 @@ public class Person {
            throw new DoublonException("Error, this movie is already in this list.");
         }
         this.personAVue.add(movie);
+        movie.addPerson(this);
         
     }
     

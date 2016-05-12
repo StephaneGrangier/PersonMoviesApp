@@ -11,3 +11,7 @@ and open the template in the editor.
 #header{
     background-color: cornflowerblue;
 }
+
+#content{
+    background-color: gray;
+}

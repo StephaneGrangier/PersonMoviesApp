@@ -7,6 +7,7 @@ package ch.hearc.ig.odi.personmoviesapp.bean;
 
 import ch.hearc.ig.odi.personmoviesapp.business.Movie;
 import ch.hearc.ig.odi.personmoviesapp.business.Person;
+import ch.hearc.ig.odi.personmoviesapp.exception.DoublonException;
 import ch.hearc.ig.odi.personmoviesapp.service.Services;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -61,5 +62,28 @@ public class DetailsPersonBean {
         return person.getPersonAVue();
 
     }
+    
+    /**
+     * Liste les films pas encore vus par la personne
+     */    
+     public List<Movie> getNotWatchedMovies() {
+        List<Movie> movies = services.getMoviesList();
+        List<Movie> moviesNotWatched = new ArrayList();
+
+        for (Movie movie : movies) {
+            if (! person.getPersonAVue().contains(movie)) {
+                moviesNotWatched.add(movie);
+            }
+        }
+        
+        return moviesNotWatched;
+    }
+     
+     public void addMovieWatched(Movie movie) throws DoublonException {
+         person.addMovie(movie);
+         
+     }
+     
+
     
 }

@@ -14,17 +14,19 @@ import java.util.List;
  * @author floriane.sapin
  */
 public class Person {
-    
+
+
+
     private Long id;
     private String firstName;
     private String lastName;
     private List<Movie> personAVue;
-    
-    public Person(){
-        
+
+    public Person() {
+
     }
-    
-    public Person(Long id, String firstname, String lastName){
+
+    public Person(Long id, String firstname, String lastName) {
         personAVue = new ArrayList<Movie>();
         this.id = id;
         this.firstName = firstname;
@@ -62,19 +64,20 @@ public class Person {
     public void setPersonAVue(List<Movie> PersonAVue) {
         this.personAVue = PersonAVue;
     }
-    
-    public void addMovie(Movie movie) throws DoublonException{
-        if (personAVue.contains(movie)){
-           throw new DoublonException("Error, this movie is already in this list.");
+
+    public void addMovie(Movie movie) throws DoublonException {
+        if (personAVue.contains(movie)) {
+            throw new DoublonException("Error, this movie is already in this list.");
         }
         this.personAVue.add(movie);
         movie.addPerson(this);
-        
+
     }
-    
-    public Integer nbrMovies(){
+
+    public Integer nbrMovies() {
         return this.personAVue.size();
     }
+
     
-    
+
 }

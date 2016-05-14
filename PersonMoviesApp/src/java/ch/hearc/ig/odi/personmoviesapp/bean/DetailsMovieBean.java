@@ -10,6 +10,7 @@ import ch.hearc.ig.odi.personmoviesapp.business.Person;
 import ch.hearc.ig.odi.personmoviesapp.service.Services;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -59,6 +60,21 @@ public class DetailsMovieBean {
     public List<Person> getPersons(){
 
         return movie.getFilmVuPar();
+    }
+    
+    public void removeMovie(Movie movieDelete){
+        services.getMoviesList().remove(movieDelete);
+        
+        
+        for(Person persons : services.getPeopleList()){
+            Iterator<Movie> iter = persons.getPersonAVue().iterator();
+            while (iter.hasNext()){
+                Movie movie = iter.next();
+                if(movie == movieDelete){
+                    iter.remove();
+                }
+            }
+        }
     }
     
 }

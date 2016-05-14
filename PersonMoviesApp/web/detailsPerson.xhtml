@@ -54,16 +54,19 @@
                             <f:facet name="header">
                                 <h:outputText value="#{msg['person.producer']}" />
                             </f:facet>
-                            <h:commandLink id="cmdLnkMovieProducer" value="#{movie.producer}" />
+
+                            <h:commandButton id="cmdLnkMovieRemove" value="" styleClass="buttonImage" action="#{detailsMovieBean.removeMovie(movie)}">
+                                <f:ajax execute="@this" render="@form"></f:ajax>
+                            </h:commandButton>
                         </h:column>
 
                     </h:dataTable>
-            
+
                 </h:form>
-                
+
                 <h:button id="buttonBack" value="#{msg['buttonBack']}" outcome="accueil"/>
 
-                
+
             </ui:define>
 
             <ui:define name="footer">

@@ -62,16 +62,20 @@
 
                     </h:dataTable>
 
-<<<<<<< HEAD
                     Ajout d'un nouveau film à la liste: 
                     <f:view>
-                        <h:selectOneMenu value="#{detailsPersonBean.getNotWatchedMovies()}" onchange="submit()" valueChangeListener="#{detailsPersonBean.addMovieWatched(e)}" styleClass="combo1">
-                   <!--  JSF -> CDI  <f:converter converterId="movieConverter" />  -->
+                        <h:selectOneMenu id="ldMovieAdd" value="#{detailsPersonBean.getNotWatchedMovies()}"  styleClass="combo1">
+                            <!--  JSF -> CDI  <f:converter converterId="movieConverter" />  -->
                             <f:converter binding="#{movieConverter}" />
                             <f:selectItems value="#{detailsPersonBean.getNotWatchedMovies()}"
-                                                    var="movie"
-                                                    itemLabel="#{movie.name}"/>
+                                                    var="movieAdd"
+                                                    itemLabel="#{movieAdd.name}"/>
                         </h:selectOneMenu>
+                        
+                           <h:commandButton id="cmdMovieAdd" value="Ajouter" action="#{detailsPersonBean.addWatchedMovie(movieAdd)}">
+                              <f:ajax execute="@this" render="@form"></f:ajax>
+                            </h:commandButton>
+                      
                     </f:view>
 
 
@@ -79,10 +83,8 @@
 
 
 
-=======
-                </h:form>
 
->>>>>>> 45abb90689268282bbf23e95b3cf2f6a32cbc830
+
                 <h:button id="buttonBack" value="#{msg['buttonBack']}" outcome="accueil"/>
 
 

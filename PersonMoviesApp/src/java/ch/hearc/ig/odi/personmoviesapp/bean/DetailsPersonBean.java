@@ -13,8 +13,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
@@ -25,9 +23,10 @@ import javax.inject.Inject;
 @Named(value = "detailsPersonBean")
 @SessionScoped
 
-public class DetailsPersonBean implements Serializable{
-    
-    @Inject Services services;
+public class DetailsPersonBean implements Serializable {
+
+    @Inject
+    Services services;
     private Person person;
 
     /**
@@ -36,7 +35,6 @@ public class DetailsPersonBean implements Serializable{
     public DetailsPersonBean() {
     }
 
-
     public Person getPerson() {
         return person;
     }
@@ -44,46 +42,44 @@ public class DetailsPersonBean implements Serializable{
     public void setPerson(Person person) {
         this.person = person;
     }
-    
-    public String recupPerson(Person person){
-        if (person == null){
+
+    public String recupPerson(Person person) {
+        if (person == null) {
             return "fail";
         } else {
             this.person = person;
             return "Success";
         }
     }
-    
+
     /**
      * Permet d'afficher les films vu par la personne récupérer dans le bean
      */
-    public List<Movie> getMovies (){
+    public List<Movie> getMovies() {
         //List<Movie> movies = new ArrayList<Movie>();
         return person.getPersonAVue();
 
     }
-    
+
     /**
      * Liste les films pas encore vus par la personne
-     */    
-     public List<Movie> getNotWatchedMovies() {
+     */
+    public List<Movie> getNotWatchedMovies() {
         List<Movie> movies = services.getMoviesList();
         List<Movie> moviesNotWatched = new ArrayList();
 
         for (Movie movie : movies) {
-            if (! person.getPersonAVue().contains(movie)) {
+            if (!person.getPersonAVue().contains(movie)) {
                 moviesNotWatched.add(movie);
             }
         }
-        
+
         return moviesNotWatched;
     }
-     
-     public void addMovieWatched(Movie movie) throws DoublonException {
-         person.addMovie(movie);
-         
-     }
-     
 
-    
+    //Ajout d'un film à la liste de films visionnés
+    public void addWatchedMovie(Movie movie) throws DoublonException {
+        person.addMovie(movie);
+    }
+
 }

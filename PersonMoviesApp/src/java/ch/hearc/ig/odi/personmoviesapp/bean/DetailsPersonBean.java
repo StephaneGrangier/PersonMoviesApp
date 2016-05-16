@@ -23,9 +23,9 @@ import javax.inject.Inject;
  * @author floriane.sapin
  */
 @Named(value = "detailsPersonBean")
-@RequestScoped
+@SessionScoped
 
-public class DetailsPersonBean {
+public class DetailsPersonBean implements Serializable{
     
     @Inject Services services;
     private Person person;

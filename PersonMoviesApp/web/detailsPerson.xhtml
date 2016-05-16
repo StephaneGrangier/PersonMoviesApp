@@ -62,7 +62,8 @@
                     Ajout d'un nouveau film à la liste: 
                     <f:view>
                         <h:selectOneMenu value="#{detailsPersonBean.getNotWatchedMovies()}" onchange="submit()" valueChangeListener="#{detailsPersonBean.addMovieWatched(e)}" styleClass="combo1">
-                            <f:converter converterId="movieConverter" />
+                   <!--  JSF -> CDI  <f:converter converterId="movieConverter" />  -->
+                            <f:converter binding="#{movieConverter}" />
                             <f:selectItems value="#{detailsPersonBean.getNotWatchedMovies()}"
                                                     var="movie"
                                                     itemLabel="#{movie.name}"/>

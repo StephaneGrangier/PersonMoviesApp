@@ -6,16 +6,20 @@
 package ch.hearc.ig.odi.personmoviesapp.bean;
 
 import ch.hearc.ig.odi.personmoviesapp.business.Movie;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Named;
 
 /**
  *
  * @author stephane.grangier
  */
-@FacesConverter(forClass=MovieConverter.class, value="movieConverter")
+//JSF -> CDI @FacesConverter(forClass=MovieConverter.class, value="movieConverter")
+@Named(value="movieConverter")
+@RequestScoped
 public class MovieConverter implements Converter {
 
     public Object getAsObject(FacesContext context, UIComponent component,

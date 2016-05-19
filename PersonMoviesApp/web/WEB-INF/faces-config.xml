@@ -83,6 +83,14 @@
         </navigation-case>
     </navigation-rule>
     
+    <navigation-case>
+            <from-action>#{detailsMovieBean.recupPerson(person)}</from-action>
+            <from-outcome>fail</from-outcome>
+            <to-view-id>/detailsMovie.xhtml</to-view-id>
+            <from-outcome>Success</from-outcome>
+            <to-view-id>/detailsPerson.xhtml</to-view-id>
+        </navigation-case>
+    
     <converter> 
         <converter-id>movieConverter</converter-id> 
         <converter-class>ch.hearc.ig.odi.personmoviesapp.bean.MovieConverter</converter-class> 

@@ -62,20 +62,7 @@ public class DetailsMovieBean {
         return movie.getFilmVuPar();
     }
     
-    public void removeMovie(Movie movieDelete){
-        services.getMoviesList().remove(movieDelete);
-        
-        
-        for(Person persons : services.getPeopleList()){
-            Iterator<Movie> iter = persons.getPersonAVue().iterator();
-            while (iter.hasNext()){
-                Movie movie = iter.next();
-                if(movie == movieDelete){
-                    iter.remove();
-                }
-            }
-        }
-    }
+  
     
    
        

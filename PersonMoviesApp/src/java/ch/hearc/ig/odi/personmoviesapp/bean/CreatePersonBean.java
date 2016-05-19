@@ -5,6 +5,8 @@
  */
 package ch.hearc.ig.odi.personmoviesapp.bean;
 
+import ch.hearc.ig.odi.personmoviesapp.business.Movie;
+import ch.hearc.ig.odi.personmoviesapp.exception.PersonException;
 import ch.hearc.ig.odi.personmoviesapp.service.Services;
 import java.io.Serializable;
 import javax.inject.Named;
@@ -20,12 +22,13 @@ import javax.inject.Inject;
 @Named(value = "createPersonBean")
 @RequestScoped
 public class CreatePersonBean {
-    
-    @Inject Services services;
-    
-   private Long id;
-   private String firstName;
-   private String lastName;
+
+    @Inject
+    Services services;
+
+    private Long id;
+    private String firstName;
+    private String lastName;
 
     /**
      * Creates a new instance of CreatePersonBean
@@ -64,14 +67,18 @@ public class CreatePersonBean {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    
-    
-    
-    public String savePerson(){
-       String result;
-       services.addPeople(id, firstName, lastName);
-       result = "Success";
-       return result;
+
+    public String savePerson() throws PersonException {
+        String result;
+        Movie movieTrouve = services.getMoviesList().get(id.intValue());
+        if (movieTrouve == null) {
+            services.addPeople(id, firstName, lastName);
+            result = "Success";
+
+        } else {
+            throw new PersonException("Error, the person already exist.");
+        }
+        return result;
     }
-    
+
 }

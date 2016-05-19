@@ -24,7 +24,9 @@ public class MovieConverter implements Converter {
 
     public Object getAsObject(FacesContext context, UIComponent component,
             String value) {
-        return null;
+            Movie movieToAdd = new Movie();
+            movieToAdd.setName(value);
+        return movieToAdd;
     }
 
     public String getAsString(FacesContext context, UIComponent component,

@@ -51,6 +51,8 @@
             <from-action>${createPersonBean.savePerson()}</from-action>
             <from-outcome>Success</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
+            <from-outcome>fail</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>

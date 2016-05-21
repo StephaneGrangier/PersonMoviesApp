@@ -6,11 +6,13 @@
 package ch.hearc.ig.odi.personmoviesapp.bean;
 
 import ch.hearc.ig.odi.personmoviesapp.business.Movie;
+import ch.hearc.ig.odi.personmoviesapp.service.Services;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -22,17 +24,17 @@ import javax.inject.Named;
 @RequestScoped
 public class MovieConverter implements Converter {
 
+    @Inject Services services;
+    
     public Object getAsObject(FacesContext context, UIComponent component,
             String value) {
-            Movie movieToAdd = new Movie();
-            movieToAdd.setName(value);
-        return movieToAdd;
+        return services.findMovieById(new Long (value));
     }
 
     public String getAsString(FacesContext context, UIComponent component,
             Object value) {
         Movie movie = (Movie) value;
-        return movie.getName();
+        return movie.getId().toString();
     }
 }
 

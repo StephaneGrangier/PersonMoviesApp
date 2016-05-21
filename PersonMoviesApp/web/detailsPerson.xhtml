@@ -55,17 +55,15 @@
                                 <h:outputText value="#{msg['person.producer']}" />
                             </f:facet>
 
-                            <h:commandButton id="cmdLnkMovieRemove" value="" styleClass="buttonImage" action="#{detailsMovieBean.removeMovie(movie)}">
+                            <h:commandButton id="cmdLnkMovieRemove" value="" styleClass="buttonImage" action="#{detailsPersonBean.removeMovieWatched(movie)}">
                                 <f:ajax execute="@this" render="@form"></f:ajax>
                             </h:commandButton>
                         </h:column>
 
                     </h:dataTable>
 
-                    Ajout d'un nouveau film à la liste: 
-                    <f:view>
-                        <h:selectOneMenu id="ldMovieAdd" value="#{detailsPersonBean.movieToAdd}"  styleClass="combo1" onchange="submit()">
-                            <!--  JSF -> CDI  <f:converter converterId="movieConverter" />  -->
+                    <p>Ajout d'un nouveau film à la liste: </p>
+                        <h:selectOneMenu id="ldMovieAdd" value="#{detailsPersonBean.movieToAdd}"  styleClass="combo1">               
                             <f:converter binding="#{movieConverter}" />
                             <f:selectItems value="#{detailsPersonBean.getNotWatchedMovies()}"
                                            var="movieAdd"
@@ -73,29 +71,21 @@
 
 
                         </h:selectOneMenu>
-
-                        <h:commandButton id="cmdMovieAdd" value="Ajouter" action="#{detailsPersonBean.addWatchedMovie(movieAdd)}">
-                            <f:ajax execute="@this" render="@form"></f:ajax>
-                        </h:commandButton>
-
-
-
-                    </f:view>
-
+                        
+                           <h:commandButton id="cmdMovieAdd" value="Ajouter">
+                               <f:ajax execute="ldMovieAdd" render="@form" listener="#{detailsPersonBean.addWatchedMovie()}"></f:ajax>
+                            </h:commandButton>
+                      
 
                 </h:form>
 
 
-
-
-
                 <h:button id="buttonBack" value="#{msg['buttonBack']}" outcome="accueil"/>
-
 
             </ui:define>
 
             <ui:define name="footer">
-
+                
             </ui:define>
         </ui:composition>
     </body>

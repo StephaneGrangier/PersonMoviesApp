@@ -107,4 +107,8 @@ public class Services implements Serializable{
         Movie movie = new Movie(id, name, producer);
         movies.put(id, movie);
     }
+    
+    public Movie findMovieById (Long id){
+        return this.movies.get(id);
+    }
 }

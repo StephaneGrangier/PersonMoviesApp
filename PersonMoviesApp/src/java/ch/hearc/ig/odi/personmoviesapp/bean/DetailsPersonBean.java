@@ -11,6 +11,7 @@ import ch.hearc.ig.odi.personmoviesapp.exception.DoublonException;
 import ch.hearc.ig.odi.personmoviesapp.service.Services;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -32,6 +33,13 @@ public class DetailsPersonBean implements Serializable {
     private Movie movieToAdd;
     List<Movie> moviesNotWatched;
 
+
+    /**
+     * Creates a new instance of DetailsPersonBean
+     */
+    public DetailsPersonBean() {
+    }
+
     public Movie getMovieToAdd() {
         return movieToAdd;
     }
@@ -39,12 +47,8 @@ public class DetailsPersonBean implements Serializable {
     public void setMovieToAdd(Movie movieToAdd) {
         this.movieToAdd = movieToAdd;
     }
-
-    /**
-     * Creates a new instance of DetailsPersonBean
-     */
-    public DetailsPersonBean() {
-    }
+    
+    
 
     public Person getPerson() {
         return person;
@@ -89,8 +93,17 @@ public class DetailsPersonBean implements Serializable {
     }
 
     //Ajout d'un film à la liste de films visionnés
-    public void addWatchedMovie(Movie movie) throws DoublonException {
+
+
+    public void addWatchedMovie() throws DoublonException {
+
         person.addMovie(movieToAdd);
     }
+    
+    public void removeMovieWatched(Movie movieDelete){
+          person.getPersonAVue().remove(movieDelete);
+          movieDelete.getFilmVuPar().remove(this);      
+    }
+    
 
 }

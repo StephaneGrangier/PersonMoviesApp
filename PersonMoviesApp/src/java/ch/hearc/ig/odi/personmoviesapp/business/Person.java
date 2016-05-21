@@ -66,6 +66,9 @@ public class Person {
     }
 
     public void addMovie(Movie movie) throws DoublonException {
+        if(movie == null){
+            throw new NullPointerException("movie is null");
+        }
         if (personAVue.contains(movie)) {
             throw new DoublonException("Error, this movie is already in this list.");
         }

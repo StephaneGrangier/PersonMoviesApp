@@ -48,13 +48,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{msg['person.firstName']}" />
                             </f:facet>
-                            <h:commandLink id="cmdLnkPersFirstname" value="#{person.firstName}" />
+                            <h:commandLink id="cmdLnkPersFirstname" value="#{person.firstName}" action="#{detailsPersonBean.recupPerson(person)}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{msg['person.lastName']}" />
                             </f:facet>
-                            <h:commandLink id="cmdLnkPerLastname" value="#{person.lastName}" />
+                            <h:commandLink id="cmdLnkPerLastname" value="#{person.lastName}" action="#{detailsPersonBean.recupPerson(person)}"/>
                         </h:column>
 
                     </h:dataTable>

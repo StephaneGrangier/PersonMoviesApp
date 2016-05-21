@@ -70,7 +70,7 @@ public class Movie {
 
     public void addPerson(Person person) throws DoublonException {
         if (filmVuPar.contains(person)) {
-            throw new DoublonException("Error, this movie is already in this list.");
+            throw new DoublonException("Error, this person has already watched this movie.");
         }
         this.filmVuPar.add(person);
 

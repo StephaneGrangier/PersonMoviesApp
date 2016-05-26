@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <ui:composition template="/layout.xhtml">
+            <ui:define name="header">
+                <h1>
+                    <h:outputText value="#{msg['detailsPerson.title']}" />
+                </h1>
+            </ui:define>
+
+            <ui:define name="content">
+
+                <h2>
+                    <h:outputText value="#{msg['person.details.title']}" />
+                </h2>
+
+                <h:panelGrid border="0" columns="2">
+                    <h:outputLabel value="#{msg['person.id']} : " />
+                    <h:outputText value="#{detailsPersonBean.person.id}" />
+                    <h:outputLabel value="#{msg['person.firstName']} : " />
+                    <h:outputText value="#{detailsPersonBean.person.firstName}" />
+                    <h:outputLabel value="#{msg['person.lastName']} : " />
+                    <h:outputText value="#{detailsPersonBean.person.lastName}" />
+                </h:panelGrid>
+
+                <h1>
+                    <h:outputText value="#{msg['person.listMovie.title']}" />
+                </h1>
+
+                <h:form id="persMovieListForm">
+
+                    <h:dataTable id="listMovies" var="movie" value="#{detailsPersonBean.getMovies()}">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['movie.id']}" />
+                            </f:facet>
+                            <h:outputText id="movieId" value="#{movie.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['movie.name']}" />
+                            </f:facet>
+                            <h:commandLink id="cmdLnkMovieName" value="#{movie.name}" action="#{detailsMovieBean.recupMovie(movie)}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg['person.producer']}" />
+                            </f:facet>
+
+                            <h:commandButton id="cmdLnkMovieRemove" value="" styleClass="buttonImage" action="#{detailsPersonBean.removeMovieWatched(movie)}">
+                                <f:ajax execute="@this" render="@form"></f:ajax>
+                            </h:commandButton>
+                        </h:column>
+
+                    </h:dataTable>
+
+                    <p>Ajout d'un nouveau film à la liste: </p>
+                        <h:selectOneMenu id="ldMovieAdd" value="#{detailsPersonBean.movieToAdd}"  styleClass="combo1">               
+                            <f:converter binding="#{movieConverter}" />
+                            <f:selectItems value="#{detailsPersonBean.getNotWatchedMovies()}"
+                                           var="movieAdd"
+                                           itemLabel="#{movieAdd.name}"/>
+
+
+                        </h:selectOneMenu>
+                        
+                           <h:commandButton id="cmdMovieAdd" value="Ajouter">
+                               <f:ajax execute="ldMovieAdd" render="@form" listener="#{detailsPersonBean.addWatchedMovie()}"></f:ajax>
+                            </h:commandButton>
+                      
+
+                </h:form>
+
+
+                <h:button id="buttonBack" value="#{msg['buttonBack']}" outcome="accueil"/>
+
+            </ui:define>
+
+            <ui:define name="footer">
+                
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

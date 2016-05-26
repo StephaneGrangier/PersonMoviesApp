@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <ui:composition template="/layout.xhtml">
+            <ui:define name="header">
+                <h1>
+                    <h:outputText value="#{msg['createPerson.title']}" />
+                </h1>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h2>#{msg['person.create.form.title']}</h2>
+                    #{msg['person.id']} : <h:inputText id="number"
+                                   title="Id"
+                                   required="true"
+                                   requiredMessage="#{msg['person.create.error.id.required']}"
+                                   maxlength="25"
+                                   value="#{createPersonBean.id}"/>
+                    <p></p>
+                    #{msg['person.firstName']} : <h:inputText id="firstName"
+                                   title="First name"
+                                   required="true"
+                                   requiredMessage="#{msg['person.create.error.firstName.required']}"
+                                   maxlength="50" 
+                                   value="${createPersonBean.firstName}"/>
+                    <p></p>
+                    #{msg['person.lastName']} : <h:inputText id="lastName"
+                                   title="Last name"
+                                   required="true"
+                                   requiredMessage="#{msg['person.create.error.lastName.required']}"
+                                   maxlength="50"
+                                   value="${createPersonBean.lastName}"/>
+                    <p></p>
+
+                    &nbsp;
+
+                    <h:commandButton id="submit" value="#{msg['button.label.submit']}" 
+                                     action="${createPersonBean.savePerson()}" />
+
+                </h:form>
+                <br/>
+            </ui:define>
+
+            <ui:define name="footer">
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
